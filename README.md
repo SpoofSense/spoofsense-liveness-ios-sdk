@@ -13,7 +13,7 @@
 [CocoaPods](https://cocoapods.org) is a dependency manager for Cocoa projects. For usage and installation instructions, visit their website. To integrate spoof-sense-ios into your Xcode project using CocoaPods, specify it in your `Podfile`:
 
 ```ruby
-pod 'SpoofSense'
+pod 'spoofSenseios'
 ```
 
 ## What this CocoaPod does?
@@ -83,7 +83,7 @@ SpoofSense.appFirstNameColor = .black
 ```
 
 ```swift
-SpoofSense.appLastName = "YourAppFirstName"
+SpoofSense.appLastName = "YourAppLastName"
 SpoofSense.appLastNameColor = .green
 ```
 
