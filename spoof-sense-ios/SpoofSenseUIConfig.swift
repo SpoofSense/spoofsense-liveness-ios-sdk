@@ -26,7 +26,7 @@ public class SpoofSenseUIConfig {
     private var _appFirstNameColor = UIColor(named: "Button_BG_Color_0E68C0") ?? #colorLiteral(red: 0.05490196078, green: 0.4078431373, blue: 0.7529411765, alpha: 1)
     private var _appLastNameColor = UIColor(named: "Text_Color_222222") ?? #colorLiteral(red: 0.1333333333, green: 0.1333333333, blue: 0.1333333333, alpha: 1)
     private var _appLastName = "Sense"
-    private var _versionNumberString = "face v1.0.8"
+    private var _versionNumberString = "face V1.1.2"
     private var _versionNumberColor = UIColor(named: "Text_Color_222222") ?? #colorLiteral(red: 0.1333333333, green: 0.1333333333, blue: 0.1333333333, alpha: 1)
     public var isNaigationControllerPresent = false
     public var isNaigationControllerAnimated = true
@@ -166,7 +166,7 @@ public class SpoofSenseUIConfig {
 public extension SpoofSenseUIConfig {
     func present(with navigationController: UINavigationController, animated: Bool = true) {
         if _apiKey.isEmpty {
-            let jsonObject: [String: Any] = ["message": ResultValue.apiKey.getResultMessage, "status": false]
+            let jsonObject: [String: Any] = ["message": ResultValue.apiKey.getResultMessage, "liveness": false]
             print("jsonObject: ", jsonObject)
             SpoofSense.resultCallBack?(jsonObject)
             return
@@ -177,9 +177,9 @@ public extension SpoofSenseUIConfig {
         self.navigationController()
     }
     
-    func launch(with navigationController: UINavigationController) {
+    func push(with navigationController: UINavigationController) {
         if _apiKey.isEmpty {
-            let jsonObject: [String: Any] = ["message": ResultValue.apiKey.getResultMessage, "status": false]
+            let jsonObject: [String: Any] = ["message": ResultValue.apiKey.getResultMessage, "liveness": false]
             print("jsonObject: ", jsonObject)
             SpoofSense.resultCallBack?(jsonObject)
             return
@@ -192,7 +192,7 @@ public extension SpoofSenseUIConfig {
 private extension SpoofSenseUIConfig {
     func navigationController() {
         if _apiKey.isEmpty {
-            let jsonObject: [String: Any] = ["message": ResultValue.apiKey.getResultMessage, "status": false]
+            let jsonObject: [String: Any] = ["message": ResultValue.apiKey.getResultMessage, "liveness": false]
             print("jsonObject: ", jsonObject)
             SpoofSense.resultCallBack?(jsonObject)
             return

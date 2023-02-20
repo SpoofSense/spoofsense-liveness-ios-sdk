@@ -12,6 +12,8 @@ public class CameraViewController: UIViewController {
     
     @IBOutlet weak var previewView: UIView!
     @IBOutlet weak var btnCapture: UIButton!
+    @IBOutlet weak var viewMainCamera: UIView!
+    @IBOutlet weak var viewSubCamera: UIView!
     
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
@@ -22,18 +24,11 @@ public class CameraViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
-        btnCapture.clipsToBounds = true
-        btnCapture.layer.cornerRadius = btnCapture.bounds.height / 2
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.setupCameraView()
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        btnCapture.layer.cornerRadius = btnCapture.bounds.height / 2
     }
     
     public override func viewWillDisappear(_ animated: Bool) {
@@ -51,7 +46,12 @@ private extension CameraViewController {
     }
     
     func setCustomUI() {
-        btnCapture.backgroundColor = SpoofSense.buttonBackgroundColor
+        viewMainCamera.clipsToBounds = true
+        viewMainCamera.layer.borderWidth = 2
+        viewMainCamera.layer.borderColor = UIColor.white.cgColor
+        viewSubCamera.layer.cornerRadius = viewSubCamera.bounds.height / 2
+        viewMainCamera.layer.cornerRadius = viewMainCamera.bounds.height / 2
+       // btnCapture.backgroundColor = SpoofSense.buttonBackgroundColor
     }
     
     func setupCameraView() {
@@ -118,8 +118,19 @@ private extension CameraViewController {
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation(), let image = UIImage(data: imageData)
+        guard let imageData = photo.fileDataRepresentation(), let myImage = UIImage(data: imageData)
         else { return }
+        let imageView = UIImageView()
+        
+        //let myImageWidth = myImage.size.width
+        let myImageHeight = myImage.size.height
+        let myViewWidth = self.view.frame.size.width
+        
+        let ratio: CGFloat = 3.0 / 4.0
+        let scaledHeight = myImageHeight * ratio
+        imageView.image = myImage
+        imageView.frame = CGRect(x: 0, y: 0, width: myViewWidth, height: scaledHeight)
+       // guard let finalImageData = imageView.image?.pngData() else { return }
         let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
         self.resultCameraVM.base64ImageData = strBase64
         self.goToResultView()

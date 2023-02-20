@@ -34,7 +34,8 @@ This CocoaPod consist of mainly 3 screens:
 ```
 respectively shown in the below image.
 
-![image](https://user-images.githubusercontent.com/104752632/218302185-0fc9f765-41df-4e6f-853b-34b6f2d0e5c8.jpg)
+![Image](https://user-images.githubusercontent.com/104752632/220024900-e2242ac9-6d76-44ca-9e1e-f66c89c36ffe.jpg)
+
 
 ## Setup
 
@@ -113,7 +114,7 @@ SpoofSense.guidelinesButtonTextTitle = "Check Liveness"
 
 Push spoofsense
 ```swift
-SpoofSense.launch(with: Your_Navigation_Controller)
+SpoofSense.push(with: Your_Navigation_Controller)
 ```
 
 Present spoofsense
