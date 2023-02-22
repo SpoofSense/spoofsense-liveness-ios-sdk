@@ -15,7 +15,7 @@ public class SpoofSenseUIConfig {
     public var resultCallBack:(([String:Any]) -> ())?
     
     private var _appFirstName = "Spoof"
-    private var _apiKey = ""
+    private var _apiKey = "Ek5Bnc6Aqx1W9Ye2JXf2G6w6u2sjRjvOaNK79z39"
     private var _guidelinesButtonTextTitle = "Check Liveness"
     private var _splashButtonTextTitle = "Check Liveness"
     private var _buttonTitleColor = UIColor(named: "Button_Text_Color_FFFFFF") ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

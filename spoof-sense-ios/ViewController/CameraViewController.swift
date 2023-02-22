@@ -51,19 +51,18 @@ private extension CameraViewController {
         viewMainCamera.layer.borderColor = UIColor.white.cgColor
         viewSubCamera.layer.cornerRadius = viewSubCamera.bounds.height / 2
         viewMainCamera.layer.cornerRadius = viewMainCamera.bounds.height / 2
-       // btnCapture.backgroundColor = SpoofSense.buttonBackgroundColor
     }
     
     func setupCameraView() {
         captureSession = AVCaptureSession()
-        captureSession.sessionPreset = .medium
-        guard let backCamera = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front)
-        else {
+        captureSession.sessionPreset = .photo
+        guard let cam = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .front) else {
             print("Unable to access front camera!")
             return
         }
+        
         do {
-            let input = try AVCaptureDeviceInput(device: backCamera)
+            let input = try AVCaptureDeviceInput(device: cam)
             stillImageOutput = AVCapturePhotoOutput()
             if captureSession.canAddInput(input) && captureSession.canAddOutput(stillImageOutput) {
                 captureSession.addInput(input)
@@ -118,20 +117,16 @@ private extension CameraViewController {
 
 extension CameraViewController: AVCapturePhotoCaptureDelegate {
     public func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-        guard let imageData = photo.fileDataRepresentation(), let myImage = UIImage(data: imageData)
-        else { return }
-        let imageView = UIImageView()
+        guard let imageData = photo.fileDataRepresentation(),
+                let originalImg = UIImage(data: imageData) else {
+            return
+        }
         
-        //let myImageWidth = myImage.size.width
-        let myImageHeight = myImage.size.height
-        let myViewWidth = self.view.frame.size.width
+        let imgWidth = 1008
+        let requiredImgHeight = imgWidth + Int(imgWidth / 3)
         
-        let ratio: CGFloat = 3.0 / 4.0
-        let scaledHeight = myImageHeight * ratio
-        imageView.image = myImage
-        imageView.frame = CGRect(x: 0, y: 0, width: myViewWidth, height: scaledHeight)
-       // guard let finalImageData = imageView.image?.pngData() else { return }
-        let strBase64 = imageData.base64EncodedString(options: .lineLength64Characters)
+        let resizedImgData = originalImg.resizeImage(targetSize: CGSize(width: imgWidth, height: requiredImgHeight), quality: .medium)
+        let strBase64 = resizedImgData.base64EncodedString(options: .lineLength64Characters)
         self.resultCameraVM.base64ImageData = strBase64
         self.goToResultView()
     }

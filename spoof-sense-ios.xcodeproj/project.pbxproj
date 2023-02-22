@@ -31,6 +31,7 @@
 		88BAA7AA2994D8DF00B2CD57 /* AppEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BAA7A92994D8DF00B2CD57 /* AppEnum.swift */; };
 		88BAA7AC2994D8FA00B2CD57 /* NSError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 88BAA7AB2994D8FA00B2CD57 /* NSError+Extension.swift */; };
 		88BAA7AE2994EE2C00B2CD57 /* SpoofSense.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 88BAA7AD2994EE2C00B2CD57 /* SpoofSense.storyboard */; };
+		B73E902229A6415A00F89453 /* UIImage+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B73E902129A6415A00F89453 /* UIImage+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		88BAA7A92994D8DF00B2CD57 /* AppEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnum.swift; sourceTree = "<group>"; };
 		88BAA7AB2994D8FA00B2CD57 /* NSError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extension.swift"; sourceTree = "<group>"; };
 		88BAA7AD2994EE2C00B2CD57 /* SpoofSense.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SpoofSense.storyboard; sourceTree = "<group>"; };
+		B73E902129A6415A00F89453 /* UIImage+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,20 +94,14 @@
 		88BAA73C2994BC6E00B2CD57 /* spoof-sense-ios */ = {
 			isa = PBXGroup;
 			children = (
-				B73C3B8729A34D2800F6DBEA /* Fonts */,
 				88BAA73D2994BC6E00B2CD57 /* AppDelegate.swift */,
-				88BAA7522994BDF800B2CD57 /* SplaceViewController.swift */,
-				88BAA7512994BDF800B2CD57 /* FaceGuidelinesViewController.swift */,
-				88BAA7A12994C5A800B2CD57 /* CameraViewController.swift */,
-				88BAA7A32994CB4800B2CD57 /* ResultViewController.swift */,
-				88BAA7A52994CE2A00B2CD57 /* ResultCameraViewModel.swift */,
+				B73E902529A641AD00F89453 /* Storyboard */,
+				B73E902429A6419E00F89453 /* ViewModel */,
+				B73E902329A6418400F89453 /* ViewController */,
 				88BAA7A72994D87000B2CD57 /* SpoofSenseUIConfig.swift */,
-				88BAA7A92994D8DF00B2CD57 /* AppEnum.swift */,
-				88BAA7AB2994D8FA00B2CD57 /* NSError+Extension.swift */,
-				88BAA7AD2994EE2C00B2CD57 /* SpoofSense.storyboard */,
 				88BAA7462994BC6F00B2CD57 /* Assets.xcassets */,
-				88BAA7482994BC6F00B2CD57 /* LaunchScreen.storyboard */,
 				88BAA74B2994BC6F00B2CD57 /* Info.plist */,
+				B75C663329A64DAD0000EF5D /* Helper */,
 			);
 			path = "spoof-sense-ios";
 			sourceTree = "<group>";
@@ -127,6 +123,61 @@
 				88BAA77C2994BFA600B2CD57 /* OpenSans-BoldItalic.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		B73E902029A6413A00F89453 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				88BAA7AB2994D8FA00B2CD57 /* NSError+Extension.swift */,
+				B73E902129A6415A00F89453 /* UIImage+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		B73E902329A6418400F89453 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				88BAA7522994BDF800B2CD57 /* SplaceViewController.swift */,
+				88BAA7512994BDF800B2CD57 /* FaceGuidelinesViewController.swift */,
+				88BAA7A12994C5A800B2CD57 /* CameraViewController.swift */,
+				88BAA7A32994CB4800B2CD57 /* ResultViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		B73E902429A6419E00F89453 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				88BAA7A52994CE2A00B2CD57 /* ResultCameraViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		B73E902529A641AD00F89453 /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				88BAA7482994BC6F00B2CD57 /* LaunchScreen.storyboard */,
+				88BAA7AD2994EE2C00B2CD57 /* SpoofSense.storyboard */,
+			);
+			path = Storyboard;
+			sourceTree = "<group>";
+		};
+		B73E902629A641C300F89453 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				88BAA7A92994D8DF00B2CD57 /* AppEnum.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		B75C663329A64DAD0000EF5D /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				B73E902629A641C300F89453 /* Constants */,
+				B73C3B8729A34D2800F6DBEA /* Fonts */,
+				B73E902029A6413A00F89453 /* Extension */,
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +270,7 @@
 				88BAA7A82994D87000B2CD57 /* SpoofSenseUIConfig.swift in Sources */,
 				88BAA7A62994CE2A00B2CD57 /* ResultCameraViewModel.swift in Sources */,
 				88BAA7AA2994D8DF00B2CD57 /* AppEnum.swift in Sources */,
+				B73E902229A6415A00F89453 /* UIImage+Extension.swift in Sources */,
 				88BAA7532994BDF800B2CD57 /* FaceGuidelinesViewController.swift in Sources */,
 				88BAA7AC2994D8FA00B2CD57 /* NSError+Extension.swift in Sources */,
 			);

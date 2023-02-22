@@ -429,14 +429,17 @@
                                 <rect key="frame" x="0.0" y="47" width="390" height="797"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s4I-AJ-7Mb">
-                                        <rect key="frame" x="0.0" y="0.0" width="390" height="797"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="390" height="520"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="s4I-AJ-7Mb" secondAttribute="height" multiplier="3:4" id="lVB-j1-TCD"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dUn-83-FCe">
-                                        <rect key="frame" x="0.0" y="653.66666666666663" width="390" height="143.33333333333337"/>
+                                        <rect key="frame" x="0.0" y="520" width="390" height="277"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CLICK A SELFIE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5ka-13-EoY">
-                                                <rect key="frame" x="147.33333333333334" y="19.666666666666742" width="95.333333333333343" height="21"/>
+                                                <rect key="frame" x="147.33333333333334" y="98.666666666666629" width="95.333333333333343" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="UFV-Oe-3Ym"/>
                                                 </constraints>
@@ -445,7 +448,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1U-lk-jsh">
-                                                <rect key="frame" x="170" y="46.666666666666742" width="50" height="50"/>
+                                                <rect key="frame" x="170" y="125.66666666666663" width="50" height="50"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3vb-yt-M5h">
                                                         <rect key="frame" x="2" y="2" width="44" height="46"/>
@@ -481,7 +484,7 @@
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Z1U-lk-jsh" firstAttribute="top" secondItem="5ka-13-EoY" secondAttribute="bottom" constant="6" id="O6m-vv-JdS"/>
-                                            <constraint firstItem="Z1U-lk-jsh" firstAttribute="centerY" secondItem="dUn-83-FCe" secondAttribute="centerY" id="R15-tO-XyB"/>
+                                            <constraint firstItem="Z1U-lk-jsh" firstAttribute="centerY" secondItem="dUn-83-FCe" secondAttribute="centerY" constant="12" id="R15-tO-XyB"/>
                                             <constraint firstItem="5ka-13-EoY" firstAttribute="centerX" secondItem="Z1U-lk-jsh" secondAttribute="centerX" id="fWm-pK-MBd"/>
                                             <constraint firstItem="Z1U-lk-jsh" firstAttribute="centerX" secondItem="dUn-83-FCe" secondAttribute="centerX" id="hlF-t2-ekC"/>
                                         </constraints>
@@ -490,18 +493,17 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="dUn-83-FCe" firstAttribute="leading" secondItem="1zQ-ul-94z" secondAttribute="leading" id="3D7-Ws-8UJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="s4I-AJ-7Mb" secondAttribute="bottom" id="DLi-Pe-QcS"/>
                                     <constraint firstAttribute="bottom" secondItem="dUn-83-FCe" secondAttribute="bottom" id="HM8-tj-yN6"/>
                                     <constraint firstAttribute="trailing" secondItem="s4I-AJ-7Mb" secondAttribute="trailing" id="K14-ZQ-62f"/>
                                     <constraint firstAttribute="trailing" secondItem="dUn-83-FCe" secondAttribute="trailing" id="P9Z-aI-pti"/>
-                                    <constraint firstItem="dUn-83-FCe" firstAttribute="height" secondItem="1zQ-ul-94z" secondAttribute="height" multiplier="0.18" id="Uti-bQ-eLn"/>
                                     <constraint firstItem="s4I-AJ-7Mb" firstAttribute="top" secondItem="1zQ-ul-94z" secondAttribute="top" id="Z08-Fz-c84"/>
                                     <constraint firstItem="s4I-AJ-7Mb" firstAttribute="leading" secondItem="1zQ-ul-94z" secondAttribute="leading" id="anO-1W-xxL"/>
+                                    <constraint firstItem="dUn-83-FCe" firstAttribute="top" secondItem="s4I-AJ-7Mb" secondAttribute="bottom" id="kkz-ss-sPt"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cxo-Re-1tf"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1zQ-ul-94z" firstAttribute="top" secondItem="cxo-Re-1tf" secondAttribute="top" id="3BC-T8-PKz"/>
                             <constraint firstItem="1zQ-ul-94z" firstAttribute="leading" secondItem="cxo-Re-1tf" secondAttribute="leading" id="Ef5-ge-rGl"/>
