@@ -132,6 +132,11 @@ SpoofSense.resultCallBack = { [weak self] (jsonObject) -> Void in
 }
 ```
 
+Response Structure
+```
+["message": "", "liveness": true, "imgData":"Image data as base64 string"]
+```
+
 ## License
 
 spoof-sense-ios is released under the MIT license. [See LICENSE](http://www.opensource.org/licenses/MIT) for details.

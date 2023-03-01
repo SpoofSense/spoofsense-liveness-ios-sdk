@@ -36,16 +36,16 @@ class ResultCameraViewModel {
                 guard let data = data else {
                     print(String(describing: error))
                     failure(error as NSError?)
-                    self.jsonObject = ["message": error?.localizedDescription ?? "", "liveness": false]
+                    self.jsonObject = ["message": error?.localizedDescription ?? "", "liveness": false, "imgData": self.base64ImageData]
                     return
                 }
                 if let jsonData = try? (JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]) {
                     if let detaill = jsonData["detail"] as? String {
                         failure(NSError(localizedDescription: detaill))
-                        self.jsonObject = ["message": detaill, "liveness": false]
+                        self.jsonObject = ["message": detaill, "liveness": false, "imgData": self.base64ImageData]
                     } else {
                         guard let detaill = jsonData["message"] as? String, detaill.lowercased() != "Forbidden".lowercased()  else {
-                            self.jsonObject = ["message": ResultValue.apiKey.getResultMessage, "liveness": false]
+                            self.jsonObject = ["message": ResultValue.apiKey.getResultMessage, "liveness": false, "imgData": self.base64ImageData]
                             failure(NSError(localizedDescription: ResultValue.apiKey.getResultMessage))
                             return
                         }
@@ -53,18 +53,18 @@ class ResultCameraViewModel {
                         if let pred_idx = model_output["pred_idx"] as? String, let resultValue = ResultValue(rawValue: pred_idx) {
                             switch resultValue {
                             case .real:
-                                self.jsonObject = ["message": resultValue.getResultMessage, "liveness": true]
+                                self.jsonObject = ["message": resultValue.getResultMessage, "liveness": true, "imgData": self.base64ImageData]
                                 success(resultValue.getResultMessage)
                             case .spoof:
-                                self.jsonObject = ["message": resultValue.getResultMessage, "liveness": false]
+                                self.jsonObject = ["message": resultValue.getResultMessage, "liveness": false, "imgData": self.base64ImageData]
                                 failure(NSError(localizedDescription: resultValue.getResultMessage))
                             case .apiKey:
-                                self.jsonObject = ["message": ResultValue.apiKey.getResultMessage, "liveness": false]
+                                self.jsonObject = ["message": ResultValue.apiKey.getResultMessage, "liveness": false, "imgData": self.base64ImageData]
                                 failure(NSError(localizedDescription: ResultValue.apiKey.getResultMessage))
                                 break
                             }
                         } else {
-                            self.jsonObject = ["message": detaill, "liveness": true]
+                            self.jsonObject = ["message": detaill, "liveness": true, "imgData": self.base64ImageData]
                             success(detaill)
                         }
                         
