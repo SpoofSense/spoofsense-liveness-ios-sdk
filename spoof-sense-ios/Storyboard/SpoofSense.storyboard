@@ -501,18 +501,24 @@
                                     <constraint firstItem="dUn-83-FCe" firstAttribute="top" secondItem="s4I-AJ-7Mb" secondAttribute="bottom" id="kkz-ss-sPt"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="5fM-9Q-gQ5">
+                                <rect key="frame" x="176.66666666666666" y="403.66666666666669" width="37" height="37"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="cxo-Re-1tf"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1zQ-ul-94z" firstAttribute="top" secondItem="cxo-Re-1tf" secondAttribute="top" id="3BC-T8-PKz"/>
                             <constraint firstItem="1zQ-ul-94z" firstAttribute="leading" secondItem="cxo-Re-1tf" secondAttribute="leading" id="Ef5-ge-rGl"/>
+                            <constraint firstItem="5fM-9Q-gQ5" firstAttribute="centerX" secondItem="VUY-EP-Mxr" secondAttribute="centerX" id="Q82-CR-w7L"/>
+                            <constraint firstItem="5fM-9Q-gQ5" firstAttribute="centerY" secondItem="VUY-EP-Mxr" secondAttribute="centerY" id="WOW-JA-zr6"/>
                             <constraint firstAttribute="bottom" secondItem="1zQ-ul-94z" secondAttribute="bottom" id="lUJ-PQ-8eN"/>
                             <constraint firstItem="cxo-Re-1tf" firstAttribute="trailing" secondItem="1zQ-ul-94z" secondAttribute="trailing" id="qI1-45-FWT"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="VqF-ov-a3S"/>
                     <connections>
+                        <outlet property="activityIndicatorResult" destination="5fM-9Q-gQ5" id="alz-Bl-lbU"/>
                         <outlet property="btnCapture" destination="Y0D-XZ-Dm4" id="a0Q-Zu-dU6"/>
                         <outlet property="previewView" destination="s4I-AJ-7Mb" id="21h-uM-g2R"/>
                         <outlet property="viewMainCamera" destination="Z1U-lk-jsh" id="DsH-Ru-hTE"/>

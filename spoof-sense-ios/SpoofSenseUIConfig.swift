@@ -21,6 +21,7 @@ public class SpoofSenseUIConfig {
     private var _buttonTitleColor = UIColor(named: "Button_Text_Color_FFFFFF") ?? #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
     private var _buttonBackgroundColor = UIColor(named: "Button_BG_Color_0E68C0") ?? #colorLiteral(red: 0.05490196078, green: 0.4078431373, blue: 0.7529411765, alpha: 1)
     private var _showSplashScreen = true
+    private var _showResultScreen = true
     private var _showFaceGuidelinesScreen = true
     private var _appLogo = UIImage()
     private var _appFirstNameColor = UIColor(named: "Button_BG_Color_0E68C0") ?? #colorLiteral(red: 0.05490196078, green: 0.4078431373, blue: 0.7529411765, alpha: 1)
@@ -101,6 +102,15 @@ public class SpoofSenseUIConfig {
         }
         set {
             self._showSplashScreen = newValue
+        }
+    }
+    
+    public var showResultScreen: Bool {
+        get {
+            return _showResultScreen
+        }
+        set {
+            self._showResultScreen = newValue
         }
     }
     

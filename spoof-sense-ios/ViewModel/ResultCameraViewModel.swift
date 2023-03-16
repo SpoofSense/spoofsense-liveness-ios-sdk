@@ -34,15 +34,14 @@ class ResultCameraViewModel {
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 guard let data = data else {
-                    print(String(describing: error))
-                    failure(error as NSError?)
                     self.jsonObject = ["message": error?.localizedDescription ?? "", "liveness": false, "imgData": self.base64ImageData]
+                    failure(error as NSError?)
                     return
                 }
                 if let jsonData = try? (JSONSerialization.jsonObject(with: data, options: []) as! [String: Any]) {
                     if let detaill = jsonData["detail"] as? String {
-                        failure(NSError(localizedDescription: detaill))
                         self.jsonObject = ["message": detaill, "liveness": false, "imgData": self.base64ImageData]
+                        failure(NSError(localizedDescription: detaill))
                     } else {
                         guard let detaill = jsonData["message"] as? String, detaill.lowercased() != "Forbidden".lowercased()  else {
                             self.jsonObject = ["message": ResultValue.apiKey.getResultMessage, "liveness": false, "imgData": self.base64ImageData]

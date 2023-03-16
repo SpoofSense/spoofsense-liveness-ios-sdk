@@ -110,6 +110,15 @@ SpoofSense.showFaceGuidelinesScreen = true
 SpoofSense.guidelinesButtonTextTitle = "Check Liveness"
 ```
 
+## Result Screen
+
+### Set Result Screen Visibility
+You can set the result screen visibility by simply turning flag true/false. Default is True.
+
+```swift
+SpoofSense.showResultScreen = false
+```
+
 ## Launch SpoofSense
 
 Push spoofsense

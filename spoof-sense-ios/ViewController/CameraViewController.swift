@@ -14,6 +14,7 @@ public class CameraViewController: UIViewController {
     @IBOutlet weak var btnCapture: UIButton!
     @IBOutlet weak var viewMainCamera: UIView!
     @IBOutlet weak var viewSubCamera: UIView!
+    @IBOutlet weak var activityIndicatorResult: UIActivityIndicatorView!
     
     var captureSession: AVCaptureSession!
     var stillImageOutput: AVCapturePhotoOutput!
@@ -24,6 +25,7 @@ public class CameraViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.setupUI()
+        self.hideLoader()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -37,6 +39,16 @@ public class CameraViewController: UIViewController {
         captureSession = nil
         stillImageOutput = nil
         videoPreviewLayer = nil
+    }
+    
+    func showLoader() {
+        activityIndicatorResult.isHidden = false
+        activityIndicatorResult.startAnimating()
+    }
+    
+    func hideLoader() {
+        activityIndicatorResult.isHidden = true
+        activityIndicatorResult.stopAnimating()
     }
 }
 
@@ -90,20 +102,33 @@ private extension CameraViewController {
     }
     
     func goToResultView() {
-        if self.navigationController == nil {
-            self.dismiss(animated: SpoofSense.isNaigationControllerAnimated) {
-                let podBundle = Bundle(for: ResultViewController.self)
-                let storyBoard = UIStoryboard.init(name: "SpoofSense", bundle: podBundle)
-                let vc = storyBoard.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController
-                vc?.resultCameraVM = self.resultCameraVM
-                SpoofSense.navigation?.pushViewController(vc!, animated: SpoofSense.isNaigationControllerAnimated)
-            }
-        } else {
+        if SpoofSense.showResultScreen {
             let podBundle = Bundle(for: ResultViewController.self)
             let storyBoard = UIStoryboard.init(name: "SpoofSense", bundle: podBundle)
             let vc = storyBoard.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController
             vc?.resultCameraVM = self.resultCameraVM
-            self.navigationController?.pushViewController(vc!, animated: SpoofSense.isNaigationControllerAnimated)
+            
+            guard self.navigationController == nil else {
+                self.navigationController?.pushViewController(vc!, animated: SpoofSense.isNaigationControllerAnimated)
+                return
+            }
+            
+            self.dismiss(animated: SpoofSense.isNaigationControllerAnimated) {
+                SpoofSense.navigation?.pushViewController(vc!, animated: SpoofSense.isNaigationControllerAnimated)
+            }
+        } else {
+            self.callImageResultApi()
+        }
+    }
+    
+    func callImageResultApi() {
+        self.showLoader()
+        resultCameraVM.postURLSessionGetData { stringValue in
+            self.hideLoader()
+            SpoofSense.resultCallBack?(self.resultCameraVM.jsonObject)
+        } failure: { err in
+            self.hideLoader()
+            SpoofSense.resultCallBack?(self.resultCameraVM.jsonObject)
         }
     }
 }
