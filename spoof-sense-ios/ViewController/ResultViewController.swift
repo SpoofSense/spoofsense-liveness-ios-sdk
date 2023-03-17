@@ -28,6 +28,7 @@ private extension ResultViewController {
     func setupUI() {
         self.hideLoader()
         self.viewShowMessgae.isHidden = true
+        self.btnClose.isHidden = true
         self.callImageResultApi()
         btnHome.clipsToBounds = true
         btnHome.layer.cornerRadius = 4
@@ -49,19 +50,24 @@ private extension ResultViewController {
     }
     
     func showResultText(_ isSucess: Bool, message: String) {
-        self.viewShowMessgae.isHidden = false
-        lblText.text = message
-        let podBundle = Bundle(for: ResultViewController.self)
-        if isSucess {
-            isResultFaild = false
-            let image = UIImage(named: "ic_sucess", in: podBundle, compatibleWith: nil)
-            imageViewLogo.image = image
-            btnHome.setTitle("Home", for: .normal)
+        if SpoofSense.showResultScreen {
+            self.viewShowMessgae.isHidden = false
+            self.btnClose.isHidden = false
+            lblText.text = message
+            let podBundle = Bundle(for: ResultViewController.self)
+            if isSucess {
+                isResultFaild = false
+                let image = UIImage(named: "ic_sucess", in: podBundle, compatibleWith: nil)
+                imageViewLogo.image = image
+                btnHome.setTitle("Home", for: .normal)
+            } else {
+                isResultFaild = true
+                let image = UIImage(named: "ic_faild", in: podBundle, compatibleWith: nil)
+                imageViewLogo.image = image
+                btnHome.setTitle("Try again", for: .normal)
+            }
         } else {
-            isResultFaild = true
-            let image = UIImage(named: "ic_faild", in: podBundle, compatibleWith: nil)
-            imageViewLogo.image = image
-            btnHome.setTitle("Try again", for: .normal)
+            SpoofSense.resultCallBack?(resultCameraVM.jsonObject)
         }
     }
 }

@@ -102,7 +102,9 @@ private extension CameraViewController {
     }
     
     func goToResultView() {
-        if SpoofSense.showResultScreen {
+        if SpoofSense.returnResultFromCameraScreen {
+            self.callImageResultApi()
+        } else {
             let podBundle = Bundle(for: ResultViewController.self)
             let storyBoard = UIStoryboard.init(name: "SpoofSense", bundle: podBundle)
             let vc = storyBoard.instantiateViewController(withIdentifier: "ResultViewController") as? ResultViewController
@@ -116,8 +118,6 @@ private extension CameraViewController {
             self.dismiss(animated: SpoofSense.isNaigationControllerAnimated) {
                 SpoofSense.navigation?.pushViewController(vc!, animated: SpoofSense.isNaigationControllerAnimated)
             }
-        } else {
-            self.callImageResultApi()
         }
     }
     
